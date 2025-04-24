@@ -14,7 +14,8 @@ import { useDropzone } from 'react-dropzone';
 import { Cloud, Loader2 } from 'lucide-react';
 import * as mammoth from 'mammoth';
 import { Buffer } from 'buffer';
-import pdfParse from 'pdf-parse';
+// import pdfParse from 'pdf-parse';
+import pdfParse from 'pdf-parse/lib/pdf-parse.js';
 
 
 interface UploadDocumentDialogProps {
