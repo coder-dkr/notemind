@@ -1,6 +1,6 @@
 import { DashboardNav } from '@/components/dashboard/nav';
 import { DashboardHeader } from '@/components/dashboard/header';
-import { Providers } from '@/app/providers';
+// import { Providers } from '@/app/provider s';
 
 export default function DashboardLayout({
   children,
