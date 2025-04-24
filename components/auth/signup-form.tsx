@@ -15,7 +15,6 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-// import { toast } from '@/components/ui/use-toast';
 import { Github } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { AvatarSelection } from '@/components/auth/avatar-selection';
@@ -103,6 +102,7 @@ export function SignUpForm() {
       router.refresh();
       
     } catch (error) {
+      console.error(error)
       // toast({
       //   title: 'Error',
       //   description: 'Something went wrong. Please try again.',
@@ -132,6 +132,7 @@ export function SignUpForm() {
         // });
       }
     } catch (error) {
+      console.error(error)
       // toast({
       //   title: 'Error',
       //   description: 'Something went wrong with Google signup.',
@@ -161,6 +162,7 @@ export function SignUpForm() {
         // });
       }
     } catch (error) {
+      console.error(error)
       // toast({
       //   title: 'Error',
       //   description: 'Something went wrong with GitHub signup.',

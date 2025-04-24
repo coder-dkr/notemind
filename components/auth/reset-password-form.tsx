@@ -14,7 +14,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { toast } from '@/components/ui/use-toast';
+
 import { supabase } from '@/lib/supabase';
 
 const formSchema = z.object({
@@ -42,25 +42,26 @@ export function ResetPasswordForm() {
       });
 
       if (error) {
-        toast({
-          title: 'Error',
-          description: error.message,
-          variant: 'destructive',
-        });
+        // toast({
+        //   title: 'Error',
+        //   description: error.message,
+        //   variant: 'destructive',
+        // });
         return;
       }
 
-      toast({
-        title: 'Password reset email sent',
-        description: 'Check your email for a password reset link',
-      });
+      // toast({
+      //   title: 'Password reset email sent',
+      //   description: 'Check your email for a password reset link',
+      // });
       
     } catch (error) {
-      toast({
-        title: 'Error',
-        description: 'Something went wrong. Please try again.',
-        variant: 'destructive',
-      });
+      console.error(error)
+      // toast({
+      //   title: 'Error',
+      //   description: 'Something went wrong. Please try again.',
+      //   variant: 'destructive',
+      // });
     } finally {
       setIsLoading(false);
     }

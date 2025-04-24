@@ -15,7 +15,6 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-// import { toast } from '@/components/ui/use-toast';
 import { Github } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import Link from 'next/link';
@@ -63,6 +62,7 @@ export function LoginForm() {
       router.refresh();
       
     } catch (error) {
+      console.error(error)
       // toast({
       //   title: 'Error',
       //   description: 'Something went wrong. Please try again.',
@@ -92,6 +92,7 @@ export function LoginForm() {
         // });
       }
     } catch (error) {
+      console.error(error)
       // toast({
       //   title: 'Error',
       //   description: 'Something went wrong with Google login.',
@@ -121,6 +122,7 @@ export function LoginForm() {
         // });
       }
     } catch (error) {
+      console.error(error)
       // toast({
       //   title: 'Error',
       //   description: 'Something went wrong with GitHub login.',
