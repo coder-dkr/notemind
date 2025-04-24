@@ -18,7 +18,7 @@ import {
 import { ArrowLeft, FileUp, Loader2, Save, Sparkles, AlertCircle } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
-import { UploadDocumentDialog } from '@/components/notes/upload-document-dialog';
+// import { UploadDocumentDialog } from '@/components/notes/upload-document-dialog';
 import { summarizeText } from '@/lib/deepseek';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -44,7 +44,7 @@ export function NoteEditor({ id }: NoteEditorProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [isGeneratingSummary, setIsGeneratingSummary] = useState(false);
-  const [isUploadDialogOpen, setIsUploadDialogOpen] = useState(false);
+  // const [isUploadDialogOpen, setIsUploadDialogOpen] = useState(false);
   const [autoSave, setAutoSave] = useState(true);
   const [saveTimeout, setSaveTimeout] = useState<NodeJS.Timeout | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -199,20 +199,20 @@ export function NoteEditor({ id }: NoteEditorProps) {
     }
   };
 
-  const handleUploadContent = (content: string) => {
-    if (!note) return;
+  // const handleUploadContent = (content: string) => {
+  //   if (!note) return;
     
-    const updatedNote = { ...note, content, updated_at: new Date().toISOString() };
-    setNote(updatedNote);
-    saveNote(updatedNote);
+  //   const updatedNote = { ...note, content, updated_at: new Date().toISOString() };
+  //   setNote(updatedNote);
+  //   saveNote(updatedNote);
     
-    setIsUploadDialogOpen(false);
+  //   setIsUploadDialogOpen(false);
     
-    // toast({
-    //   title: 'Document uploaded',
-    //   description: 'Your document has been added to the note.',
-    // });
-  };
+  //   // toast({
+  //   //   title: 'Document uploaded',
+  //   //   description: 'Your document has been added to the note.',
+  //   // });
+  // };
 
   if (isLoading) {
     return (
@@ -356,7 +356,7 @@ export function NoteEditor({ id }: NoteEditorProps) {
                 <div className="flex items-center gap-2">
                   <Button 
                     variant="outline" 
-                    onClick={() => setIsUploadDialogOpen(true)}
+                    // onClick={() => setIsUploadDialogOpen(true)}
                   >
                     <FileUp className="mr-2 h-4 w-4" />
                     Import Document
@@ -463,11 +463,12 @@ export function NoteEditor({ id }: NoteEditorProps) {
         </motion.div>
       </div>
       
-      <UploadDocumentDialog 
+      {/* <UploadDocumentDialog 
         open={isUploadDialogOpen} 
         onOpenChange={setIsUploadDialogOpen} 
         onUpload={handleUploadContent}
-      />
+      /> */}
+
     </div>
   );
 }
