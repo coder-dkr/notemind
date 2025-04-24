@@ -13,7 +13,9 @@ import {
 import { useDropzone } from 'react-dropzone';
 import { Cloud, Loader2 } from 'lucide-react';
 import * as mammoth from 'mammoth';
+import { Buffer } from 'buffer';
 import pdfParse from 'pdf-parse';
+
 
 interface UploadDocumentDialogProps {
   open: boolean;
@@ -77,15 +79,22 @@ export function UploadDocumentDialog({
   };
 
   const extractTextFromPdf = async (file: File): Promise<string> => {
+
+
+const parsePDF = async (arrayBuffer: ArrayBuffer) => {
+  const pdfData = Buffer.from(arrayBuffer);
+  const result = await pdfParse(pdfData);
+  return result.text;
+};
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       
       reader.onload = async (event) => {
         try {
           const arrayBuffer = event.target?.result as ArrayBuffer;
-          const pdfData = new Uint8Array(arrayBuffer);
-          const result = await pdfParse(pdfData);
-          resolve(result.text);
+          // const pdfData = new Uint8Array(arrayBuffer);
+          const resultss = await parsePDF(arrayBuffer)
+          resolve(resultss);
         } catch (error) {
           reject(error);
         }
