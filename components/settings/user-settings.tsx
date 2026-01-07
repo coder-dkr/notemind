@@ -5,14 +5,14 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { AvatarSelection } from '@/components/auth/avatar-selection';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import { Loader2, LogOut } from 'lucide-react';
+import { Loader2, LogOut, User, Palette, Shield, Bell, Sparkles } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { THEMES, ThemeOption } from '@/lib/themes';
+import { cn } from '@/lib/utils';
 
 interface Profile {
   id: string;
@@ -70,18 +70,13 @@ export function UserSettings() {
 
   const saveProfile = async () => {
     if (!profile) return;
-    
     setIsSaving(true);
-    
     try {
       const { data: { session } } = await supabase.auth.getSession();
-      
       if (!session) {
         router.push('/login');
         return;
       }
-      
-      // Update profile in database
       const { error } = await supabase
         .from('profiles')
         .update({
@@ -91,35 +86,12 @@ export function UserSettings() {
         })
         .eq('id', session.user.id);
         
-      if (error) {
-        console.error('Error updating profile:', error);
-        // toast({
-        //   title: 'Error updating profile',
-        //   description: error.message,
-        //   variant: 'destructive',
-        // });
-        return;
-      }
-      
-      // Update user metadata
+      if (error) throw error;
       await supabase.auth.updateUser({
-        data: {
-          full_name: fullName,
-          avatar_url: avatarUrl,
-        },
+        data: { full_name: fullName, avatar_url: avatarUrl },
       });
-      
-      // toast({
-      //   title: 'Profile updated',
-      //   description: 'Your profile has been updated successfully.',
-      // });
     } catch (error) {
       console.error('Error:', error);
-      // toast({
-      //   title: 'Error',
-      //   description: 'Something went wrong. Please try again.',
-      //   variant: 'destructive',
-      // });
     } finally {
       setIsSaving(false);
     }
@@ -127,42 +99,16 @@ export function UserSettings() {
 
   const saveTheme = async (newTheme: ThemeOption) => {
     if (!profile) return;
-    
     setIsSaving(true);
-    
     try {
       const { data: { session } } = await supabase.auth.getSession();
-      
-      if (!session) {
-        router.push('/login');
-        return;
-      }
-      
-      // Update theme in database
+      if (!session) return;
       const { error } = await supabase
         .from('profiles')
-        .update({
-          theme: newTheme,
-          updated_at: new Date().toISOString(),
-        })
+        .update({ theme: newTheme, updated_at: new Date().toISOString() })
         .eq('id', session.user.id);
-        
-      if (error) {
-        console.error('Error updating theme:', error);
-        // toast({
-        //   title: 'Error updating theme',
-        //   description: error.message,
-        //   variant: 'destructive',
-        // });
-        return;
-      }
-      
+      if (error) throw error;
       setTheme(newTheme);
-      
-      // toast({
-      //   title: 'Theme updated',
-      //   description: 'Your theme preference has been updated.',
-      // });
     } catch (error) {
       console.error('Error:', error);
     } finally {
@@ -171,175 +117,165 @@ export function UserSettings() {
   };
 
   const handleSignOut = async () => {
-    try {
-      const { error } = await supabase.auth.signOut();
-      
-      if (error) {
-        console.error('Error signing out:', error);
-        return;
-      }
-      
-      router.push('/');
-      router.refresh();
-    } catch (error) {
-      console.error('Error:', error);
-    }
+    await supabase.auth.signOut();
+    router.push('/');
+    router.refresh();
   };
 
   if (isLoading) {
     return (
-      <div className="w-full h-64 flex items-center justify-center">
-        <div className="flex flex-col items-center">
-          <Loader2 className="h-10 w-10 animate-spin text-muted-foreground mb-4" />
-          <p className="text-muted-foreground">Loading profile...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (!profile) {
-    return (
-      <div className="p-4 bg-destructive/10 text-destructive rounded-md">
-        Error loading profile. Please try again.
+      <div className="w-full h-96 flex flex-col items-center justify-center gap-4">
+        <Loader2 className="h-10 w-10 animate-spin text-primary" />
+        <p className="text-white/40 font-bold uppercase tracking-widest text-xs">Syncing Neural Identity...</p>
       </div>
     );
   }
 
   return (
-    <Tabs defaultValue="profile" className="max-w-3xl mx-auto">
-      <TabsList className="grid grid-cols-2">
-        <TabsTrigger value="profile">Profile</TabsTrigger>
-        <TabsTrigger value="appearance">Appearance</TabsTrigger>
-      </TabsList>
-      
-      <TabsContent value="profile" className="mt-8 space-y-8">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <Card>
-            <CardHeader>
-              <CardTitle>Profile Information</CardTitle>
-              <CardDescription>
-                Update your profile details and how others see you on the platform
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="flex flex-col sm:flex-row gap-6 items-start">
-                <div className="flex-1 space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Email</Label>
-                    <Input id="email" value={profile.email} disabled />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="fullName">Full Name</Label>
-                    <Input 
-                      id="fullName" 
-                      value={fullName} 
-                      onChange={(e) => setFullName(e.target.value)} 
-                    />
-                  </div>
-                </div>
-                
-                <div className="w-full sm:w-auto">
-                  <div className="flex flex-col items-center space-y-2">
-                    <Avatar className="h-24 w-24">
+    <div className="max-w-5xl mx-auto mt-10">
+      <Tabs defaultValue="profile" className="w-full">
+        <div className="flex flex-col lg:flex-row gap-10">
+          <TabsList className="flex lg:flex-col h-auto bg-transparent border-none p-0 gap-2 lg:w-64">
+            {[
+              { id: 'profile', label: 'Identity', icon: User },
+              { id: 'appearance', label: 'Neural Aesthetic', icon: Palette },
+              { id: 'security', label: 'Vault Access', icon: Shield },
+              { id: 'notifications', label: 'Synapse Alerts', icon: Bell },
+            ].map((tab) => (
+              <TabsTrigger
+                key={tab.id}
+                value={tab.id}
+                className="flex items-center justify-start gap-4 px-6 py-4 rounded-2xl w-full text-left font-bold text-white/40 data-[state=active]:bg-white/5 data-[state=active]:text-white data-[state=active]:shadow-lg transition-all border border-transparent data-[state=active]:border-white/5"
+              >
+                <tab.icon className="w-5 h-5" />
+                <span>{tab.label}</span>
+              </TabsTrigger>
+            ))}
+            
+            <div className="mt-auto pt-6 px-2">
+              <Button 
+                variant="ghost" 
+                onClick={handleSignOut}
+                className="w-full justify-start gap-4 h-14 rounded-2xl text-destructive hover:text-destructive hover:bg-destructive/10 font-bold"
+              >
+                <LogOut className="w-5 h-5" />
+                Disconnect
+              </Button>
+            </div>
+          </TabsList>
+
+          <div className="flex-1">
+            <TabsContent value="profile" className="mt-0 focus-visible:outline-none">
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="glass border-white/5 rounded-[3rem] p-10 lg:p-12 space-y-10"
+              >
+                <div className="flex flex-col md:flex-row items-center gap-10">
+                  <div className="relative group">
+                    <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/40 transition-colors" />
+                    <Avatar className="h-32 w-32 border-4 border-white/10 relative z-10">
                       <AvatarImage src={avatarUrl} alt={fullName || 'Avatar'} />
-                      <AvatarFallback>
+                      <AvatarFallback className="bg-white/5 text-2xl font-black">
                         {fullName ? fullName.substring(0, 2).toUpperCase() : 'U'}
                       </AvatarFallback>
                     </Avatar>
-                    <span className="text-sm text-muted-foreground">Your avatar</span>
+                  </div>
+                  <div className="flex-1 space-y-2 text-center md:text-left">
+                    <h3 className="text-2xl font-black text-white">Neural Identification</h3>
+                    <p className="text-white/40 font-medium italic">Your digital footprint within the Mind network.</p>
                   </div>
                 </div>
-              </div>
-              
-              <div className="space-y-2">
-                <Label>Profile Picture</Label>
-                <AvatarSelection 
-                  value={avatarUrl} 
-                  onChange={setAvatarUrl} 
-                />
-              </div>
-            </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button 
-                variant="destructive" 
-                onClick={handleSignOut}
+
+                <div className="grid gap-8 md:grid-cols-2">
+                  <div className="space-y-3">
+                    <Label className="text-xs font-black uppercase tracking-widest text-white/40 ml-1">Vault Key (Email)</Label>
+                    <Input value={profile.email} disabled className="h-14 rounded-2xl bg-white/5 border-white/10 text-white font-bold opacity-50" />
+                  </div>
+                  <div className="space-y-3">
+                    <Label className="text-xs font-black uppercase tracking-widest text-white/40 ml-1">Designation (Full Name)</Label>
+                    <Input 
+                      value={fullName} 
+                      onChange={(e) => setFullName(e.target.value)} 
+                      className="h-14 rounded-2xl bg-white/5 border-white/10 text-white font-bold focus:border-primary/50" 
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-6">
+                  <div className="flex items-center gap-3">
+                    <Sparkles className="w-5 h-5 text-primary" />
+                    <Label className="text-sm font-black text-white">Avatar Synthesis</Label>
+                  </div>
+                  <AvatarSelection value={avatarUrl} onChange={setAvatarUrl} />
+                </div>
+
+                <div className="pt-6 border-t border-white/5 flex justify-end">
+                  <Button 
+                    onClick={saveProfile}
+                    disabled={isSaving}
+                    className="h-14 px-10 rounded-2xl purple-gradient font-black uppercase tracking-wider text-xs shadow-xl shadow-primary/20"
+                  >
+                    {isSaving ? <Loader2 className="animate-spin" /> : 'Update Identity'}
+                  </Button>
+                </div>
+              </motion.div>
+            </TabsContent>
+
+            <TabsContent value="appearance" className="mt-0 focus-visible:outline-none">
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="glass border-white/5 rounded-[3rem] p-10 lg:p-12 space-y-10"
               >
-                <LogOut className="mr-2 h-4 w-4" />
-                Sign Out
-              </Button>
-              <Button 
-                onClick={saveProfile}
-                disabled={isSaving}
-              >
-                {isSaving ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Saving
-                  </>
-                ) : (
-                  'Save Changes'
-                )}
-              </Button>
-            </CardFooter>
-          </Card>
-        </motion.div>
-      </TabsContent>
-      
-      <TabsContent value="appearance" className="mt-8 space-y-8">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <Card>
-            <CardHeader>
-              <CardTitle>Appearance</CardTitle>
-              <CardDescription>
-                Customize how NoteMind looks for you
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <Label>Select Theme</Label>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+                <div className="space-y-2">
+                  <h3 className="text-2xl font-black text-white">Visual Frequency</h3>
+                  <p className="text-white/40 font-medium italic">Adjust the neural interface to match your cognitive style.</p>
+                </div>
+
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
                   {(Object.keys(THEMES) as ThemeOption[]).map((themeKey) => {
                     const themeInfo = THEMES[themeKey];
+                    const isActive = theme === themeKey;
                     return (
-                      <div
+                      <motion.div
                         key={themeKey}
                         onClick={() => saveTheme(themeKey)}
-                        className={`relative overflow-hidden rounded-lg cursor-pointer transition-all border-2 ${
-                          theme === themeKey ? 'border-primary ring-2 ring-primary' : 'border-border'
-                        }`}
+                        whileHover={{ y: -5 }}
+                        whileTap={{ scale: 0.95 }}
+                        className={cn(
+                          "relative rounded-[2rem] cursor-pointer border-2 transition-all p-4 group",
+                          isActive ? 'border-primary bg-primary/5 shadow-2xl shadow-primary/10' : 'border-white/5 hover:border-white/20'
+                        )}
                       >
                         <div 
-                          className="h-20"
+                          className="h-24 rounded-2xl mb-4 overflow-hidden relative border border-white/5"
                           style={{ background: themeInfo.bgColor }}
                         >
-                          <div className="h-1/2 flex items-center justify-center">
-                            <div 
-                              className="w-8 h-8 rounded-full"
-                              style={{ background: themeInfo.primaryColor }}
-                            ></div>
+                          <div className="absolute inset-0 flex items-center justify-center opacity-40">
+                             <div className="w-12 h-12 rounded-full blur-xl" style={{ background: themeInfo.primaryColor }} />
+                          </div>
+                          <div className="relative h-full flex items-center justify-center">
+                            <div className="w-10 h-10 rounded-xl shadow-lg" style={{ background: themeInfo.primaryColor }} />
                           </div>
                         </div>
-                        <div className="p-2 text-center bg-background">
-                          <span className="text-sm font-medium">{themeInfo.name}</span>
+                        <div className="text-center">
+                          <span className={cn(
+                            "text-sm font-black tracking-tight uppercase",
+                            isActive ? "text-primary" : "text-white/60"
+                          )}>
+                            {themeInfo.name}
+                          </span>
                         </div>
-                      </div>
+                      </motion.div>
                     );
                   })}
                 </div>
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
-      </TabsContent>
-    </Tabs>
+              </motion.div>
+            </TabsContent>
+          </div>
+        </div>
+      </Tabs>
+    </div>
   );
 }
