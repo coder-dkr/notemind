@@ -64,9 +64,10 @@ export function LandingFeatures() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
   };
 
-  return (
-    <section className="w-full py-24 md:py-32 relative">
+    return (
+    <section className="w-full py-24 md:py-32 relative overflow-hidden">
       <div className="container px-4 md:px-6">
+
         <div className="flex flex-col items-center justify-center space-y-4 text-center mb-20">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}

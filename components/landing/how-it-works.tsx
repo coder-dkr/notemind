@@ -25,9 +25,10 @@ export function HowItWorks() {
     }
   ];
 
-  return (
-    <section className="w-full py-24 relative">
+    return (
+    <section className="w-full py-24 relative overflow-hidden">
       <div className="container px-4 md:px-6">
+
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-6xl font-black tracking-tighter text-white mb-6">
             Simple. <span className="text-gradient">Powerful.</span> Seamless.
