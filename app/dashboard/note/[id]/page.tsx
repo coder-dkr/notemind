@@ -1,10 +1,12 @@
 import { DashboardShell } from '@/components/dashboard/shell';
+import { NoteEditor } from '@/components/notes/note-editor';
 
-export default function NotePage() {
+export default async function NotePage({ params }: { params: { id: string } }) {
+  const { id } = await params;
+  
   return (
     <DashboardShell>
-      {/* <NoteEditor id={params.id} /> */}
-      <p>hey</p>
+      <NoteEditor id={id} />
     </DashboardShell>
   );
 }

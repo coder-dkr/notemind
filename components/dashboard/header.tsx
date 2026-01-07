@@ -1,6 +1,7 @@
 'use client';
+
 import { Button } from '@/components/ui/button';
-import { Plus } from 'lucide-react';
+import { Plus, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
@@ -21,7 +22,6 @@ export function DashboardHeader({
 
   const createNewNote = async () => {
     try {
-      // Get user session
       const { data: { session } } = await supabase.auth.getSession();
       
       if (!session) {
@@ -32,7 +32,6 @@ export function DashboardHeader({
       const noteId = uuidv4();
       const userId = session.user.id;
       
-      // Create new note
       const { error } = await supabase
         .from('notes')
         .insert({
@@ -50,7 +49,6 @@ export function DashboardHeader({
         return;
       }
       
-      // Navigate to the new note
       router.push(`/dashboard/note/${noteId}`);
     } catch (error) {
       console.error('Error:', error);
@@ -58,26 +56,33 @@ export function DashboardHeader({
   };
 
   return (
-    <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-8">
+    <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between mb-10">
       <motion.div 
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
       >
-        {heading && <h1 className="text-3xl font-bold tracking-tight">{heading}</h1>}
-        {text && <p className="text-muted-foreground">{text}</p>}
+        {heading && (
+          <h1 className="text-3xl md:text-4xl font-black tracking-tight text-white mb-2">
+            {heading}<span className="text-primary">.</span>
+          </h1>
+        )}
+        {text && <p className="text-white/40 font-medium text-lg">{text}</p>}
       </motion.div>
       
       <motion.div 
-        className="flex items-center gap-4"
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.3, delay: 0.1 }}
+        className="flex items-center gap-3"
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
       >
         {heading === 'Dashboard' && (
-          <Button onClick={createNewNote}>
-            <Plus className="mr-2 h-4 w-4" />
-            New Note
+          <Button 
+            onClick={createNewNote}
+            className="purple-gradient h-12 px-6 rounded-2xl border-0 shadow-lg shadow-primary/20 hover:scale-105 transition-all duration-300 font-bold"
+          >
+            <Plus className="mr-2 h-5 w-5" />
+            Create Note
           </Button>
         )}
         {children}

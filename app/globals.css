@@ -1,49 +1,35 @@
 @import "tailwindcss";
 
-@import "tailwindcss";
-
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  /* 1. Core Colors */
-  --color-background: theme(colors.white);
-  --color-foreground: theme(colors.slate.900);
-  --color-card: theme(colors.white);
-  --color-card-foreground: theme(colors.slate.800);
-  --color-primary: theme(colors.slate.900);
-  --color-primary-foreground: theme(colors.white);
+  /* 1. Core Colors - Dark Purple Theme */
+  --color-background: #0a0118;
+  --color-foreground: #f5f3ff;
+  --color-card: #120326;
+  --color-card-foreground: #f5f3ff;
+  --color-popover: #120326;
+  --color-popover-foreground: #f5f3ff;
+  --color-primary: #8b5cf6;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #2e1065;
+  --color-secondary-foreground: #f5f3ff;
+  --color-muted: #1e0a3c;
+  --color-muted-foreground: #a78bfa;
+  --color-accent: #4c1d95;
+  --color-accent-foreground: #f5f3ff;
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #2e1065;
+  --color-input: #2e1065;
+  --color-ring: #8b5cf6;
 
   /* 2. Custom Colors */
-  --color-chart-1: theme(colors.blue.500);
-  --color-chart-2: theme(colors.green.500);
-  --color-chart-3: theme(colors.yellow.500);
-  --color-chart-4: theme(colors.red.500);
-  --color-chart-5: theme(colors.purple.500);
-
-  --color-background: 0 0% 100%;
-  --color-foreground: 0 0% 3.9%;
-  --color-card: 0 0% 100%;
-  --color-card-foreground: 0 0% 3.9%;
-  --color-popover: 0 0% 100%;
-  --color-popover-foreground: 0 0% 3.9%;
-  --color-primary: 0 0% 9%;
-  --color-primary-foreground: 0 0% 98%;
-  --color-secondary: 0 0% 96.1%;
-  --color-secondary-foreground: 0 0% 9%;
-  --color-muted: 0 0% 96.1%;
-  --color-muted-foreground: 0 0% 45.1%;
-  --color-accent: 0 0% 96.1%;
-  --color-accent-foreground: 0 0% 9%;
-  --color-destructive: 0 84.2% 60.2%;
-  --color-destructive-foreground: 0 0% 98%;
-  --color-border: 0 0% 89.8%;
-  --color-input: 0 0% 89.8%;
-  --color-ring: 0 0% 3.9%;
-  --color-chart-1: 12 76% 61%;
-  --color-chart-2: 173 58% 39%;
-  --color-chart-3: 197 37% 24%;
-  --color-chart-4: 43 74% 66%;
-  --color-chart-5: 27 87% 67%;
+  --color-chart-1: #8b5cf6;
+  --color-chart-2: #c084fc;
+  --color-chart-3: #d8b4fe;
+  --color-chart-4: #e879f9;
+  --color-chart-5: #f472b6;
 
   /* 3. Animations */
   @keyframes accordion-down {
@@ -64,15 +50,25 @@
     }
   }
 
+  @keyframes shimmer {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: -200% 0;
+    }
+  }
+
   /* 4. Animation Classes */
   --animation-accordion-down: accordion-down 0.2s ease-out;
   --animation-accordion-up: accordion-up 0.2s ease-out;
+  --animation-shimmer: shimmer 2s linear infinite;
 }
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --foreground-rgb: 245, 243, 255;
+  --background-start-rgb: 10, 1, 24;
+  --background-end-rgb: 18, 3, 38;
 }
 
 /* Chart colors */
@@ -85,21 +81,30 @@
   animation: var(--animation-accordion-down);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-
-
 @layer base {
   * {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground selection:bg-primary/30 selection:text-primary-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-background/60 backdrop-blur-md border border-white/10;
+  }
+  
+  .glass-card {
+    @apply bg-card/40 backdrop-blur-lg border border-white/5 shadow-2xl;
+  }
+
+  .purple-gradient {
+    @apply bg-gradient-to-br from-primary via-accent to-secondary;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-400;
   }
 }
