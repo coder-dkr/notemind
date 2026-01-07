@@ -1,6 +1,8 @@
 import { Button } from '@/components/ui/button';
 import { LandingHero } from '@/components/landing/hero';
 import { LandingFeatures } from '@/components/landing/features';
+import { HowItWorks } from '@/components/landing/how-it-works';
+import { LandingWaitlist } from '@/components/landing/waitlist';
 import { LandingFooter } from '@/components/landing/footer';
 import { SignedOut } from '@/components/auth/signed-out';
 
@@ -36,7 +38,9 @@ export default function Home() {
       
       <main className="flex-1 relative z-10 pt-20">
         <LandingHero />
+        <HowItWorks />
         <LandingFeatures />
+        <LandingWaitlist />
       </main>
       <LandingFooter />
     </div>

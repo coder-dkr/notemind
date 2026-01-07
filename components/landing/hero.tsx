@@ -49,20 +49,27 @@ export function LandingHero() {
             Elevate your intelligence with AI-powered notes. Capture, organize, and synthesize your thoughts with unprecedented speed and clarity.
           </motion.p>
 
-          <motion.div 
-            className="flex flex-col gap-4 min-[400px]:flex-row pt-4"
-            variants={itemVariants}
-          >
-            <Button size="lg" className="h-14 px-10 text-lg purple-gradient border-0 hover:scale-105 transition-all duration-300 shadow-[0_0_40px_rgba(139,92,246,0.3)] group" asChild>
-              <a href="/signup" className="flex items-center gap-2">
-                Start for Free
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </a>
-            </Button>
-            <Button size="lg" variant="outline" className="h-14 px-10 text-lg glass border-white/10 hover:bg-white/5 transition-all text-white" asChild>
-              <a href="/login">Explore Features</a>
-            </Button>
-          </motion.div>
+            <motion.div 
+              className="flex flex-col gap-4 min-[400px]:flex-row pt-4"
+              variants={itemVariants}
+            >
+              <Button size="lg" className="h-14 px-10 text-lg purple-gradient border-0 hover:scale-105 transition-all duration-300 shadow-[0_0_40px_rgba(139,92,246,0.3)] group" asChild>
+                <a href="/signup" className="flex items-center gap-2">
+                  Start for Free
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </a>
+              </Button>
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="h-14 px-10 text-lg glass border-white/10 hover:bg-white/5 transition-all text-white"
+                onClick={() => {
+                  document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Join Waitlist
+              </Button>
+            </motion.div>
 
           <motion.div 
             className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-20 w-full"
