@@ -190,7 +190,7 @@ export function UserSettings() {
                 <div className="grid gap-8 md:grid-cols-2">
                   <div className="space-y-3">
                     <Label className="text-xs font-black uppercase tracking-widest text-white/40 ml-1">Vault Key (Email)</Label>
-                    <Input value={profile.email} disabled className="h-14 rounded-2xl bg-white/5 border-white/10 text-white font-bold opacity-50" />
+                    <Input value={profile?.email} disabled className="h-14 rounded-2xl bg-white/5 border-white/10 text-white font-bold opacity-50" />
                   </div>
                   <div className="space-y-3">
                     <Label className="text-xs font-black uppercase tracking-widest text-white/40 ml-1">Designation (Full Name)</Label>

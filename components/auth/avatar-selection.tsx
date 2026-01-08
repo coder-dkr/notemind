@@ -16,19 +16,19 @@ interface AvatarSelectionProps {
 
 const DEFAULT_AVATARS = [
   {
-    id: 'dragon',
-    name: 'Dragon',
-    url: 'https://images.pexels.com/photos/7542660/pexels-photo-7542660.jpeg?auto=compress&cs=tinysrgb&w=300',
+    id: 'goat',
+    name: 'Goat',
+    url: 'https://occ-0-395-64.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABaZDG-e5z0ZBO2ICTZ7swQGZWXV3GtvPhwvMzxnCgRI1rkyWFRZEriQYXBdMZ65AJySu0YtoCK-dozyf7JObBV4vgpqwwvGPhA.png?r=b6d',
   },
   {
-    id: 'tiger',
-    name: 'Tiger',
-    url: 'https://images.pexels.com/photos/145939/pexels-photo-145939.jpeg?auto=compress&cs=tinysrgb&w=300',
+    id: 'lucifer',
+    name: 'Lucifer',
+    url: 'https://occ-0-395-64.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABTrM4t1rTAjmQwNtOPMY4ll7JBLZE4nkjsoxUP1sCoPs1gMdv9VoxVhbAoh0PRUlLja1hWoA5zq7Hejjbf1C4SBPPHOQchLmvvyv.png?r=d9d',
   },
   {
-    id: 'panda',
-    name: 'Panda',
-    url: 'https://images.pexels.com/photos/4338020/pexels-photo-4338020.jpeg?auto=compress&cs=tinysrgb&w=300',
+    id: 'rooster',
+    name: 'Rooster',
+    url: 'https://occ-0-395-64.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABVOUc4gXCizdZZ_pTe97G7nf7FRR94-d6ktp2BEFIPk_EQIOrttuxm6Znt02MwQ--i5C_IR0nDoK0iCByTgb3g71TmbTDjgxBQ.png?r=9fc',
   },
 ];
 
