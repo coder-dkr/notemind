@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Sparkles } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -58,7 +57,7 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
           <div className="glass-card p-8 rounded-[2rem] border-white/10">
             <blockquote className="space-y-4">
               <p className="text-lg font-medium text-white/80 leading-relaxed italic">
-                &quot;Notemind has completely redefined how I synthesize information. It's like having a second brain that never forgets.&quot;
+                &quot;Notemind has completely redefined how I synthesize information. It&apos;s like having a second brain that never forgets.&quot;
               </p>
               <footer className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full purple-gradient flex items-center justify-center font-bold text-xs">SK</div>

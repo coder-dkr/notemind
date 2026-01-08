@@ -15,10 +15,9 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { Github, Mail, Lock, ArrowRight, Sparkles } from 'lucide-react';
+import { Github, Mail, Lock, ArrowRight } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 
 const formSchema = z.object({
   email: z.string().email({

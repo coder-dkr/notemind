@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Brain, Sparkles, Zap, Shield, Search, Cpu, BarChart3, Workflow } from 'lucide-react';
+import { Brain, Sparkles, Zap, Shield, Cpu, Workflow } from 'lucide-react';
 
 export function LandingFeatures() {
   const features = [

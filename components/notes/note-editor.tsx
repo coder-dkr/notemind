@@ -6,16 +6,16 @@ import { supabase } from '@/lib/supabase';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+// import {
+//   Card,
+//   CardContent,
+//   CardDescription,
+//   CardFooter,
+//   CardHeader,
+//   CardTitle,
+// } from '@/components/ui/card';
 
-import { ArrowLeft, FileUp, Loader2, Save, Sparkles, AlertCircle, Calendar, Trash2, Layout, Zap } from 'lucide-react';
+import { ArrowLeft, FileUp, Loader2, Save, Sparkles, AlertCircle, Calendar, Zap } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { summarizeText } from '@/lib/deepseek';

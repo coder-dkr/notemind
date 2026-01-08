@@ -15,7 +15,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { Github, Mail, Lock, User, ArrowRight, Sparkles } from 'lucide-react';
+import { Github, Mail, Lock, User, ArrowRight } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { AvatarSelection } from '@/components/auth/avatar-selection';
 import Link from 'next/link';

@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { format } from 'date-fns';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Clock, MoreVertical, Brain, Sparkles, Trash2, Edit2, Calendar } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { MoreVertical, Sparkles, Trash2, Edit2, Calendar } from 'lucide-react';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import {

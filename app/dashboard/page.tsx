@@ -2,13 +2,11 @@
 
 import { useEffect, useState } from 'react';
 import { DashboardShell } from '@/components/dashboard/shell';
-import { DashboardHeader } from '@/components/dashboard/header';
 import { motion } from 'framer-motion';
 import { 
   FileText, 
   Sparkles, 
   Brain, 
-  Zap, 
   ArrowUpRight, 
   Clock, 
   TrendingUp,

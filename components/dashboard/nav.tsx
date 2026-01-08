@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { FileText, Home, Settings, PanelLeft, Sparkles, Brain, LayoutDashboard } from 'lucide-react';
+import { FileText, Settings, PanelLeft, Sparkles, LayoutDashboard } from 'lucide-react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 

@@ -1,5 +1,4 @@
 import { DashboardNav } from '@/components/dashboard/nav';
-import { DashboardHeader } from '@/components/dashboard/header';
 
 export default function DashboardLayout({
   children,

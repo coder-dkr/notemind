@@ -6,7 +6,7 @@ import { supabase } from '@/lib/supabase';
 import { NoteCard } from '@/components/notes/note-card';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
-import { Search, Plus, Sparkles, Filter } from 'lucide-react';
+import { Search, Sparkles, } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface Note {
