@@ -20,9 +20,9 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
         <div className="relative z-20 flex items-center gap-3">
           <Link href="/" className="flex items-center gap-3 group">
             <div className="w-10 h-10 rounded-xl purple-gradient flex items-center justify-center group-hover:rotate-12 transition-transform duration-300 shadow-lg shadow-primary/20">
-              <span className="text-white font-black text-xl">N</span>
+              <span className="text-white font-black text-xl">K</span>
             </div>
-            <span className="text-2xl font-black tracking-tight text-white">Notemind<span className="text-primary">.ai</span></span>
+            <span className="text-2xl font-black tracking-tight text-white">KeraMind<span className="text-primary">.ai</span></span>
           </Link>
         </div>
         
@@ -45,10 +45,10 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
           
           <div className="text-center space-y-4 max-w-md">
             <h2 className="text-3xl font-black tracking-tight text-white leading-tight">
-              Elevate Your <span className="text-gradient">Intelligence</span>
+              Think With <span className="text-gradient">Clarity</span>
             </h2>
             <p className="text-white/40 font-medium text-lg">
-              Unlock the full potential of your thoughts with neural-enhanced note-taking.
+              Understand, structure, and improve your thinking over time with cognitive intelligence.
             </p>
           </div>
         </div>
@@ -57,13 +57,13 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
           <div className="glass-card p-8 rounded-[2rem] border-white/10">
             <blockquote className="space-y-4">
               <p className="text-lg font-medium text-white/80 leading-relaxed italic">
-                &quot;Notemind has completely redefined how I synthesize information. It&apos;s like having a second brain that never forgets.&quot;
+                &quot;KeraMind helped me see contradictions in my thinking I never noticed. It&apos;s like having a cognitive mirror.&quot;
               </p>
               <footer className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full purple-gradient flex items-center justify-center font-bold text-xs">SK</div>
                 <div>
                   <div className="text-sm font-black text-white">Sophie Knowles</div>
-                  <div className="text-xs font-bold text-primary uppercase tracking-widest">Lead Researcher</div>
+                  <div className="text-xs font-bold text-primary uppercase tracking-widest">Decision Scientist</div>
                 </div>
               </footer>
             </blockquote>
@@ -81,9 +81,9 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
           <div className="flex flex-col items-center lg:hidden mb-8 space-y-4">
             <Link href="/" className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-2xl purple-gradient flex items-center justify-center shadow-lg">
-                <span className="text-white font-black text-2xl">N</span>
+                <span className="text-white font-black text-2xl">K</span>
               </div>
-              <span className="text-3xl font-black tracking-tight text-white">Notemind<span className="text-primary">.ai</span></span>
+              <span className="text-3xl font-black tracking-tight text-white">KeraMind<span className="text-primary">.ai</span></span>
             </Link>
           </div>
           <div className="glass-card p-10 rounded-[3rem] border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">

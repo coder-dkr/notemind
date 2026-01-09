@@ -31,22 +31,22 @@ export function LandingHero() {
         >
           <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border-primary/20 text-primary-foreground/80 text-sm font-medium mb-4">
             <Sparkles className="w-4 h-4 text-primary" />
-            <span>The Future of Intelligent Note-Taking</span>
+            <span>Your Cognitive Operating System</span>
           </motion.div>
           
           <motion.h1 
             className="text-4xl font-black tracking-tighter sm:text-6xl md:text-7xl lg:text-8xl/none"
             variants={itemVariants}
           >
-            <span className="text-white">Note</span>
-            <span className="text-gradient">mind.ai</span>
+            <span className="text-white">Kera</span>
+            <span className="text-gradient">Mind.ai</span>
           </motion.h1>
 
           <motion.p 
             className="max-w-[700px] text-white/60 md:text-xl lg:text-2xl font-medium leading-relaxed"
             variants={itemVariants}
           >
-            Elevate your intelligence with AI-powered notes. Capture, organize, and synthesize your thoughts with unprecedented speed and clarity.
+            Understand, structure, and improve your thinking over time. Build a persistent model of your goals, beliefs, and decisions.
           </motion.p>
 
             <motion.div 
@@ -61,13 +61,13 @@ export function LandingHero() {
               </Button>
               <Button 
                 size="lg" 
-                variant="outline" 
-                className="h-14 px-10 text-lg glass border-white/10 hover:bg-white/5 transition-all text-white"
-                onClick={() => {
-                  document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth' });
-                }}
+                className="h-14 px-10 text-lg bg-gradient-to-r from-amber-500 to-orange-500 border-0 hover:scale-105 transition-all duration-300 shadow-[0_0_40px_rgba(245,158,11,0.3)] group text-white"
+                asChild
               >
-                Join Waitlist
+                <a href="/dashboard/dump" className="flex items-center gap-2">
+                  <Zap className="w-5 h-5" />
+                  Dump Tingles
+                </a>
               </Button>
             </motion.div>
 
@@ -76,10 +76,10 @@ export function LandingHero() {
             variants={itemVariants}
           >
             {[
-              { icon: Zap, label: "Instant Summary" },
-              { icon: Brain, label: "AI Insights" },
-              { icon: Shield, label: "Secure Vault" },
-              { icon: Rocket, label: "Hyper-Growth" }
+              { icon: Zap, label: "Thought Capture" },
+              { icon: Brain, label: "Cognitive Map" },
+              { icon: Shield, label: "Bias Detection" },
+              { icon: Rocket, label: "Self-Growth" }
             ].map((feature, i) => (
               <div key={i} className="flex flex-col items-center gap-3">
                 <div className="w-12 h-12 rounded-2xl glass flex items-center justify-center text-primary group hover:purple-gradient hover:text-white transition-all duration-500">

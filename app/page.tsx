@@ -19,9 +19,9 @@ export default function Home() {
         <div className="container flex items-center justify-between h-20 px-4 md:px-6">
           <div className="flex items-center gap-2 group cursor-pointer">
             <div className="w-10 h-10 rounded-xl purple-gradient flex items-center justify-center group-hover:rotate-12 transition-transform duration-300 shadow-lg shadow-primary/20">
-              <span className="text-white font-black text-xl">N</span>
+              <span className="text-white font-black text-xl">K</span>
             </div>
-            <span className="text-2xl font-black tracking-tight text-white">Notemind<span className="text-primary">.ai</span></span>
+            <span className="text-2xl font-black tracking-tight text-white">KeraMind<span className="text-primary">.ai</span></span>
           </div>
           <div className="flex items-center gap-6">
             <SignedOut>

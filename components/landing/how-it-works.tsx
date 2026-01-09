@@ -7,20 +7,20 @@ export function HowItWorks() {
   const steps = [
     {
       icon: <PenLine className="w-8 h-8" />,
-      title: "Capture Everything",
-      description: "Write, import, or speak. Notemind captures your ideas in any format without friction.",
+      title: "Capture Thoughts",
+      description: "Write freely about goals, decisions, or what's on your mind. KeraMind listens.",
       color: "from-blue-500 to-cyan-400"
     },
     {
       icon: <Cpu className="w-8 h-8" />,
-      title: "AI Analysis",
-      description: "Our neural engine processes your notes, extracting key insights and linking related concepts.",
+      title: "Cognitive Analysis",
+      description: "AI extracts concepts, values, assumptions, and emotional patterns from your thoughts.",
       color: "from-purple-500 to-indigo-400"
     },
     {
       icon: <Share2 className="w-8 h-8" />,
-      title: "Actionable Insights",
-      description: "Get summaries, project plans, and creative sparks delivered right when you need them.",
+      title: "Visual Insights",
+      description: "See your cognitive map, detect contradictions, and get reflections to improve clarity.",
       color: "from-pink-500 to-rose-400"
     }
   ];

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { FileText, Settings, PanelLeft, Sparkles, LayoutDashboard } from 'lucide-react';
+import { Brain, Settings, PanelLeft, Sparkles, LayoutDashboard, Network, Lightbulb, Zap } from 'lucide-react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -14,8 +14,10 @@ export function DashboardNav() {
 
   const navItems = [
     { href: '/dashboard', label: 'Overview', icon: LayoutDashboard },
-    { href: '/dashboard/notes', label: 'My Notes', icon: FileText },
-    { href: '/dashboard/ai', label: 'AI Assistant', icon: Sparkles },
+    { href: '/dashboard/dump', label: 'Dump Tingles', icon: Zap, highlight: true },
+    { href: '/dashboard/thoughts', label: 'Thought Vault', icon: Brain },
+    { href: '/dashboard/cognitive-map', label: 'Cognitive Map', icon: Network },
+    { href: '/dashboard/insights', label: 'Insights', icon: Lightbulb },
     { href: '/dashboard/settings', label: 'Settings', icon: Settings },
   ];
 
@@ -52,6 +54,7 @@ export function DashboardNav() {
         <nav className="space-y-2">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
+            const isHighlight = 'highlight' in item && item.highlight;
             return (
               <Link key={item.href} href={item.href}>
                 <motion.div
@@ -59,7 +62,9 @@ export function DashboardNav() {
                     "flex items-center gap-3 px-3 py-3 rounded-2xl transition-all duration-300 group cursor-pointer relative",
                     isActive 
                       ? "text-white" 
-                      : "text-white/40 hover:text-white hover:bg-white/5"
+                      : isHighlight
+                        ? "text-amber-400 hover:text-amber-300 bg-amber-500/10 border border-amber-500/20"
+                        : "text-white/40 hover:text-white hover:bg-white/5"
                   )}
                   whileHover={{ x: 4 }}
                   whileTap={{ scale: 0.98 }}
@@ -67,13 +72,18 @@ export function DashboardNav() {
                   {isActive && (
                     <motion.div 
                       layoutId="nav-active"
-                      className="absolute inset-0 purple-gradient rounded-2xl -z-10 shadow-lg shadow-primary/20"
+                      className={cn(
+                        "absolute inset-0 rounded-2xl -z-10 shadow-lg",
+                        isHighlight 
+                          ? "bg-gradient-to-r from-amber-500 to-orange-500 shadow-amber-500/20" 
+                          : "purple-gradient shadow-primary/20"
+                      )}
                       transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     />
                   )}
                   <item.icon className={cn(
                     "h-5 w-5 transition-colors duration-300",
-                    isActive ? "text-white" : "group-hover:text-primary"
+                    isActive ? "text-white" : isHighlight ? "text-amber-400" : "group-hover:text-primary"
                   )} />
                   <AnimatePresence mode="wait">
                     {!isCollapsed && (
@@ -87,6 +97,11 @@ export function DashboardNav() {
                       </motion.span>
                     )}
                   </AnimatePresence>
+                  {isHighlight && !isActive && !isCollapsed && (
+                    <span className="ml-auto text-[8px] font-black uppercase tracking-widest px-2 py-0.5 rounded bg-amber-500/20 text-amber-400">
+                      New
+                    </span>
+                  )}
                 </motion.div>
               </Link>
             );
@@ -99,10 +114,10 @@ export function DashboardNav() {
           <div className="glass rounded-3xl p-4 border-primary/20 bg-primary/5">
             <div className="flex items-center gap-2 mb-2">
               <Sparkles className="w-4 h-4 text-primary" />
-              <span className="text-xs font-bold text-white uppercase tracking-tight">Pro Plan</span>
+              <span className="text-xs font-bold text-white uppercase tracking-tight">Cognitive Pro</span>
             </div>
             <p className="text-[10px] text-white/40 font-medium leading-tight mb-3">
-              Unlock unlimited AI notes and advanced organization.
+              Unlock advanced cognitive analysis and deeper insights.
             </p>
             <Button size="sm" className="w-full text-[10px] h-8 purple-gradient font-black uppercase tracking-wider">
               Upgrade Now

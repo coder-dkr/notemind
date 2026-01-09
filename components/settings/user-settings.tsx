@@ -126,7 +126,7 @@ export function UserSettings() {
     return (
       <div className="w-full h-96 flex flex-col items-center justify-center gap-4">
         <Loader2 className="h-10 w-10 animate-spin text-primary" />
-        <p className="text-white/40 font-bold uppercase tracking-widest text-xs">Syncing Neural Identity...</p>
+        <p className="text-white/40 font-bold uppercase tracking-widest text-xs">Syncing Cognitive Profile...</p>
       </div>
     );
   }
@@ -183,7 +183,7 @@ export function UserSettings() {
                   </div>
                   <div className="flex-1 space-y-2 text-center md:text-left">
                     <h3 className="text-2xl font-black text-white">Neural Identification</h3>
-                    <p className="text-white/40 font-medium italic">Your digital footprint within the Mind network.</p>
+                    <p className="text-white/40 font-medium italic">Your cognitive identity within KeraMind.</p>
                   </div>
                 </div>
 
@@ -230,7 +230,7 @@ export function UserSettings() {
               >
                 <div className="space-y-2">
                   <h3 className="text-2xl font-black text-white">Visual Frequency</h3>
-                  <p className="text-white/40 font-medium italic">Adjust the neural interface to match your cognitive style.</p>
+                  <p className="text-white/40 font-medium italic">Adjust the interface to match your thinking style.</p>
                 </div>
 
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">

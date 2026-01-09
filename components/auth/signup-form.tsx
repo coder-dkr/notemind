@@ -114,7 +114,7 @@ export function SignUpForm() {
           {avatarStep ? 'Personalize Identity' : 'Create Identity'}
         </h1>
         <p className="text-sm font-medium text-white/40">
-          {avatarStep ? 'Select your neural avatar' : 'Join the future of intelligent note-taking'}
+          {avatarStep ? 'Select your neural avatar' : 'Join the future of cognitive intelligence'}
         </p>
       </div>
 

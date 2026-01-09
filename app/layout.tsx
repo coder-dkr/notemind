@@ -10,8 +10,8 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: 'NoteMind - AI-Powered Notes App',
-  description: 'Take smarter notes with AI assistance',
+  title: 'KeraMind - Cognitive Intelligence Platform',
+  description: 'Understand, structure, and improve your thinking over time',
   icons: {
     icon: '/mind.ico', 
   },

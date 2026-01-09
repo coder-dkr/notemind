@@ -35,7 +35,7 @@ export function LandingWaitlist() {
         }
       } else {
         setStatus('success');
-        setMessage("Welcome to the future of note-taking. We'll be in touch soon!");
+        setMessage("Welcome to the future of cognitive clarity. We'll be in touch soon!");
       }
     } catch (err) {
       console.error(err);
@@ -65,10 +65,10 @@ export function LandingWaitlist() {
             </div>
             
             <h2 className="text-4xl md:text-6xl font-black tracking-tighter text-white mb-6">
-              Ready to <span className="text-gradient">Evolve</span> Your Workflow?
+              Ready to <span className="text-gradient">Think</span> Better?
             </h2>
             <p className="text-white/50 text-xl font-medium mb-12 max-w-2xl mx-auto">
-              Be the first to experience the next generation of AI-driven productivity. Join our exclusive waitlist for early access.
+              Be the first to experience cognitive intelligence that helps you understand and improve your thinking. Join our exclusive waitlist.
             </p>
 
             {status === 'success' ? (

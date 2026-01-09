@@ -17,9 +17,9 @@ export default function DashboardLayout({
         <div className="container flex items-center justify-between h-16 px-4 md:px-6">
           <div className="flex items-center gap-2 group cursor-pointer">
             <div className="w-8 h-8 rounded-lg purple-gradient flex items-center justify-center group-hover:rotate-12 transition-transform duration-300 shadow-lg shadow-primary/20">
-              <span className="text-white font-black text-sm">N</span>
+              <span className="text-white font-black text-sm">K</span>
             </div>
-            <span className="text-xl font-black tracking-tight text-white">Notemind<span className="text-primary">.ai</span></span>
+            <span className="text-xl font-black tracking-tight text-white">KeraMind<span className="text-primary">.ai</span></span>
           </div>
           <div className="flex items-center gap-4">
             {/* User Profile or other header items could go here */}

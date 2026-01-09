@@ -1,49 +1,59 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Brain, Sparkles, Zap, Shield, Cpu, Workflow } from 'lucide-react';
+import { Brain, Sparkles, Zap, Shield, Cpu, Workflow, MessageSquare } from 'lucide-react';
+import Link from 'next/link';
 
 export function LandingFeatures() {
   const features = [
     {
-      icon: <Brain className="h-6 w-6" />,
-      title: "Neural Synapse",
-      description: "AI that understands context, not just keywords. It links your thoughts across all your notes.",
+      icon: <MessageSquare className="h-6 w-6" />,
+      title: "Dump Tingles",
+      description: "Chat freely, dump your chaotic thoughts. AI structures them into flows, action items, goals, and visual mind maps.",
       size: "large",
+      gradient: "from-amber-500/20 to-orange-500/20",
+      highlight: true,
+      link: "/dashboard/dump"
+    },
+    {
+      icon: <Brain className="h-6 w-6" />,
+      title: "Cognitive Graph",
+      description: "Build a visual map of your beliefs, goals, and decisions. See how your thoughts connect and evolve.",
+      size: "small",
       gradient: "from-purple-500/20 to-indigo-500/20"
     },
     {
       icon: <Zap className="h-6 w-6" />,
-      title: "Instant Digest",
-      description: "Convert 2-hour meetings into 2-minute actionable summaries instantly.",
+      title: "Contradiction Detection",
+      description: "Automatically identify conflicting beliefs and goals in your thinking patterns.",
       size: "small",
       gradient: "from-blue-500/20 to-cyan-500/20"
     },
     {
       icon: <Sparkles className="h-6 w-6" />,
-      title: "Creative Catalyst",
-      description: "Get AI-powered brainstorming partners that help you expand on half-baked ideas.",
+      title: "Bias Detection",
+      description: "Uncover cognitive biases and blind spots that may be affecting your decisions.",
       size: "small",
       gradient: "from-pink-500/20 to-rose-500/20"
     },
     {
       icon: <Workflow className="h-6 w-6" />,
-      title: "Automated Flow",
-      description: "Automatically tag, categorize, and organize your digital life without lifting a finger.",
+      title: "Concept Extraction",
+      description: "AI extracts key concepts, values, and assumptions from your thoughts automatically.",
       size: "small",
       gradient: "from-amber-500/20 to-orange-500/20"
     },
     {
       icon: <Shield className="h-6 w-6" />,
-      title: "Vault Security",
-      description: "Military-grade encryption for your most private thoughts. Your data, your rules.",
+      title: "Private & Secure",
+      description: "Your cognitive data is encrypted and owned by you. No training on your data ever.",
       size: "small",
       gradient: "from-emerald-500/20 to-teal-500/20"
     },
     {
       icon: <Cpu className="h-6 w-6" />,
-      title: "Deep Search",
-      description: "Find that one obscure idea from 3 years ago using semantic natural language search.",
+      title: "Persistent Memory",
+      description: "Unlike stateless AI chats, KeraMind remembers your goals, values, and past decisions.",
       size: "large",
       gradient: "from-violet-500/20 to-fuchsia-500/20"
     }
@@ -80,10 +90,10 @@ export function LandingFeatures() {
               The Ecosystem
             </div>
             <h2 className="text-4xl md:text-7xl font-black tracking-tighter text-white">
-              Unleash Your <span className="text-gradient">Potential</span>
+              Think <span className="text-gradient">Clearly</span>
             </h2>
             <p className="max-w-[700px] text-white/50 text-xl font-medium mx-auto leading-relaxed">
-              Experience the power of a second brain that works as fast as you do.
+              A cognitive operating system that helps you understand and improve your thinking.
             </p>
           </motion.div>
         </div>
@@ -95,33 +105,74 @@ export function LandingFeatures() {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          {features.map((feature, index) => (
-            <motion.div 
-              key={index}
-              className={`glass-card group p-8 rounded-[2.5rem] border-white/5 relative overflow-hidden flex flex-col justify-between hover:border-primary/30 transition-all duration-500 ${
-                feature.size === 'large' ? 'md:col-span-2' : 'md:col-span-1'
-              }`}
-              variants={itemVariants}
-              whileHover={{ y: -8, transition: { duration: 0.3 } }}
-            >
-              <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-              
-              <div className="relative z-10">
-                <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center text-white mb-6 border border-white/10 group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-xl">
-                  {feature.icon}
+          {features.map((feature, index) => {
+            const isHighlight = 'highlight' in feature && feature.highlight;
+            const hasLink = 'link' in feature && feature.link;
+            
+            const CardContent = (
+              <>
+                <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} ${isHighlight ? 'opacity-50' : 'opacity-0 group-hover:opacity-100'} transition-opacity duration-500`} />
+                
+                {isHighlight && (
+                  <div className="absolute top-4 right-4 z-20">
+                    <span className="text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full bg-amber-500 text-white shadow-lg">
+                      ✨ Featured
+                    </span>
+                  </div>
+                )}
+                
+                <div className="relative z-10">
+                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-white mb-6 border shadow-xl transition-all duration-500 ${
+                    isHighlight 
+                      ? 'bg-gradient-to-r from-amber-500 to-orange-500 border-amber-400/30' 
+                      : 'bg-white/5 border-white/10 group-hover:bg-primary'
+                  }`}>
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-2xl font-black mb-3 text-white tracking-tight">{feature.title}</h3>
+                  <p className={`leading-relaxed font-medium text-lg transition-colors ${
+                    isHighlight ? 'text-white/70' : 'text-white/40 group-hover:text-white/60'
+                  }`}>
+                    {feature.description}
+                  </p>
                 </div>
-                <h3 className="text-2xl font-black mb-3 text-white tracking-tight">{feature.title}</h3>
-                <p className="text-white/40 leading-relaxed font-medium text-lg group-hover:text-white/60 transition-colors">
-                  {feature.description}
-                </p>
-              </div>
-              
-              <div className="relative z-10 mt-4 flex items-center gap-2 text-primary opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-[-10px] group-hover:translate-x-0">
-                <span className="text-sm font-bold uppercase tracking-wider">Explore Feature</span>
-                <Zap className="w-4 h-4" />
-              </div>
-            </motion.div>
-          ))}
+                
+                <div className={`relative z-10 mt-4 flex items-center gap-2 transition-all duration-500 ${
+                  isHighlight 
+                    ? 'text-white opacity-100' 
+                    : 'text-primary opacity-0 group-hover:opacity-100 translate-x-[-10px] group-hover:translate-x-0'
+                }`}>
+                  <span className="text-sm font-bold uppercase tracking-wider">
+                    {isHighlight ? 'Try It Now' : 'Explore Feature'}
+                  </span>
+                  <Zap className="w-4 h-4" />
+                </div>
+              </>
+            );
+            
+            return (
+              <motion.div 
+                key={index}
+                className={`glass-card group p-8 rounded-[2.5rem] relative overflow-hidden flex flex-col justify-between transition-all duration-500 ${
+                  feature.size === 'large' ? 'md:col-span-2' : 'md:col-span-1'
+                } ${
+                  isHighlight 
+                    ? 'border-2 border-amber-500/50 hover:border-amber-400' 
+                    : 'border-white/5 hover:border-primary/30'
+                }`}
+                variants={itemVariants}
+                whileHover={{ y: -8, transition: { duration: 0.3 } }}
+              >
+                {hasLink ? (
+                  <Link href={feature.link as string} className="contents">
+                    {CardContent}
+                  </Link>
+                ) : (
+                  CardContent
+                )}
+              </motion.div>
+            );
+          })}
         </motion.div>
       </div>
     </section>
