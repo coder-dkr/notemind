@@ -1,7 +1,8 @@
 'use client';
 
-import { useCallback, useMemo, useEffect, useState } from 'react';
-import ReactFlow, {
+import { useMemo, useEffect, useState } from 'react';
+import {
+  ReactFlow,
   Node,
   Edge,
   Controls,
@@ -11,8 +12,8 @@ import ReactFlow, {
   ConnectionMode,
   Panel,
   MarkerType,
-} from 'reactflow';
-import 'reactflow/dist/style.css';
+} from '@xyflow/react';
+import '@xyflow/react/dist/style.css';
 import { motion } from 'framer-motion';
 import { Brain, Target, AlertTriangle, Heart, Lightbulb, CheckCircle, Compass } from 'lucide-react';
 import { CognitiveNode, CognitiveEdge } from '@/types/supabase';
